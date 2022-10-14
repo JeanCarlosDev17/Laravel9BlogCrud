@@ -7,15 +7,19 @@
     <x-layouts.header></x-layouts.header>
     <x-sessionStatusSave></x-sessionStatusSave>
     <x-errors></x-errors>
+    <div class="status">
+        {{session('status')}}
 
-    <h1 class="text-3xl mt-10">Crear post</h1>
-
-    <form action="{{route('storePost')}}" method="post" class="mx-40">
+    </div>
+    <h1 class="text-3xl mt-10">Editar  post</h1>
+    <form action="{{route('post.update',['post'=>$post])}}" method="POST" class="mx-40">
         @csrf
-        <x-layouts.dataFormPost>
+        @method('PATCH')
+        <x-layouts.dataFormPost :post="$post">
             <x-slot name="textButton">
                 Crear
             </x-slot>
+
         </x-layouts.dataFormPost>
 
     </form>

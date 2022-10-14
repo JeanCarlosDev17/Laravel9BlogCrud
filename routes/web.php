@@ -25,3 +25,10 @@ Route::get('about', function () {
 })->name('about');
 
 Route::get('/blog', [PostController::class,'index'])->name('blog');
+//Route::resource('/blog',PostController::class);
+Route::get('/blog/post/create',[PostController::class,'create'])->name('createPost');
+Route::post('/blog/post',[PostController::class,'store'])->name('storePost');
+Route::get('/blog/view/{post}',[PostController::class,'show'])->name('showPost');
+Route::get('/blog/edit/{post}',[PostController::class,'edit'])->name('post.edit');
+Route::patch('/blog/update/{post}',[PostController::class,'update'])->name('post.update');
+

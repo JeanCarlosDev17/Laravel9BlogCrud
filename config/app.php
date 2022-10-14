@@ -82,12 +82,12 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
-    |--------------------------------------------------------------------------
+    |------------------------- -------------------------------------------------
     |
     | The fallback locale determines the locale to use when the current one
     | is not available. You may change the value to correspond to any of
@@ -194,6 +194,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Arcanedev\LaravelLang\LaravelLangServiceProvider::class,
 
     ],
 

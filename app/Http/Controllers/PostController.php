@@ -2,86 +2,80 @@
 
 namespace App\Http\Controllers;
 
+use App\actions\post\StorePost;
+use App\actions\post\UpdatePost;
+use App\Http\Requests\storePostRequest;
+use App\Http\Requests\updatePostRequest;
+use App\Models\Post;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Array_;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private $storePost;
+    private $updatePost;
+
+    public function __construct(StorePost $storePost,UpdatePost $updatePost)
     {
-        $posts=[
-            ['title'=>'primer post'],
-            ['title'=>'segundo post'],
-            ['title'=>'tercer post']
-        ];
+        $this->storePost=$storePost;
+        $this->updatePost=$updatePost;
+    }
+
+    public function index():View
+    {
+        $posts= DB::select('select id,title,body  from posts');
+
         return view('blog',['posts'=>$posts]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+
+        return view('posts.createPost');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(storePostRequest $request)
     {
-        //
+
+        $this->storePost->execute($request->validate());
+//        $this->storePost->execute($request->all()); otra manera de obtener el array de datos
+//        return redirect()->route('blog');
+        session()->flash('status',"post creado");
+        return to_route('createPost')->with('message',('ya coronamos'));
+        //2 MANERAS DE ENVIAR UN MENSAJE DE SESSION
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function show(Post $post):View
     {
-        //
+
+        return view('posts.showPost',['post'=>$post]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function edit( $post)
     {
-        //
+//        dd(Post::find($post)->title);
+        return view('posts.editPost',['post'=>Post::find($post)]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+
+    public function update(updatePostRequest $request, Post $post)
     {
-        //
+        $post = $this->updatePost->execute($post,$request->all());
+        return to_route('post.edit',["post"=>$post])->with("status","Actualizado correctamete");
+//        view('posts.editPost',["post"=>$post])->with("status","Actualizado correctamete");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //
