@@ -11,17 +11,19 @@
         {{session('status')}}
 
     </div>
-    <h1 class="text-3xl mt-10">Editar  post</h1>
-    <form action="{{route('post.update',['post'=>$post])}}" method="POST" class="mx-40">
-        @csrf
-        @method('PATCH')
-        <x-layouts.dataFormPost :post="$post">
-            <x-slot name="textButton">
-                Crear
-            </x-slot>
+        <div class="container mx-auto px-6 max-w-md">
+        <h1 class="text-3xl mt-10 px-4  ">Editar  post</h1>
+        <form action="{{route('post.update',['post'=>$post])}}" method="POST" class="mx-auto px-4">
+            @csrf
+            @method('PATCH')
+            <x-layouts.formFieldsPost :post="$post">
+                <x-slot name="textButton">
+                    Actualizar
+                </x-slot>
 
-        </x-layouts.dataFormPost>
+            </x-layouts.formFieldsPost>
 
-    </form>
+        </form>
+    </div>
 
 @endsection

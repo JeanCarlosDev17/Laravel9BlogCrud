@@ -11,13 +11,15 @@
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <!-- Styles -->
-        @vite('resources/css/app.css')
 
+        <link  rel="stylesheet" href="{{Vite::asset('resources/scss/app.scss')}}">
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        <script src="{{Vite::asset ('resources/js/app.js')}}"></script>
+{{--        @vite('resources/js/app.js')--}}
     </head>
     <body>
         @yield('body')
@@ -25,3 +27,5 @@
     </body>
 
 </html>
+
+

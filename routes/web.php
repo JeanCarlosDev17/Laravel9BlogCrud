@@ -26,9 +26,9 @@ Route::get('about', function () {
 
 Route::get('/blog', [PostController::class,'index'])->name('blog');
 //Route::resource('/blog',PostController::class);
-Route::get('/blog/post/create',[PostController::class,'create'])->name('createPost');
-Route::post('/blog/post',[PostController::class,'store'])->name('storePost');
-Route::get('/blog/view/{post}',[PostController::class,'show'])->name('showPost');
+Route::get('/blog/post/create',[PostController::class,'create'])->name('post.create');
+Route::post('/blog/post',[PostController::class,'store'])->name('post.store');
+Route::get('/blog/view/{post}',[PostController::class,'show'])->name('post.show');
 Route::get('/blog/edit/{post}',[PostController::class,'edit'])->name('post.edit');
 Route::patch('/blog/update/{post}',[PostController::class,'update'])->name('post.update');
 

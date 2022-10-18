@@ -8,16 +8,18 @@
     <x-sessionStatusSave></x-sessionStatusSave>
     <x-errors></x-errors>
 
-    <h1 class="text-3xl mt-10">Crear post</h1>
+    <div class="container mx-auto px-6 max-w-md">
+        <h1 class="text-3xl mt-10">Crear post</h1>
 
-    <form action="{{route('storePost')}}" method="post" class="mx-40">
-        @csrf
-        <x-layouts.dataFormPost>
-            <x-slot name="textButton">
-                Crear
-            </x-slot>
-        </x-layouts.dataFormPost>
+        <form action="{{route('post.store')}}" method="post" class="">
+            @csrf
+            <x-layouts.formFieldsPost>
+                <x-slot name="textButton">
+                    Crear
+                </x-slot>
+            </x-layouts.formFieldsPost>
 
-    </form>
+        </form>
+    </div>
 
 @endsection

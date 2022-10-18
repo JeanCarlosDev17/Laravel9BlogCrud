@@ -43,11 +43,11 @@ class PostController extends Controller
     public function store(storePostRequest $request)
     {
 
-        $this->storePost->execute($request->validate());
+        $this->storePost->execute($request->validated());
 //        $this->storePost->execute($request->all()); otra manera de obtener el array de datos
 //        return redirect()->route('blog');
         session()->flash('status',"post creado");
-        return to_route('createPost')->with('message',('ya coronamos'));
+        return to_route('post.create')->with('message',('ya coronamos'));
         //2 MANERAS DE ENVIAR UN MENSAJE DE SESSION
 
     }
@@ -70,7 +70,7 @@ class PostController extends Controller
 
     public function update(updatePostRequest $request, Post $post)
     {
-        $post = $this->updatePost->execute($post,$request->all());
+        $post = $this->updatePost->execute($post,$request->validated());
         return to_route('post.edit',["post"=>$post])->with("status","Actualizado correctamete");
 //        view('posts.editPost',["post"=>$post])->with("status","Actualizado correctamete");
     }

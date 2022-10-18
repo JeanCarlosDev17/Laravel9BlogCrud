@@ -3,5 +3,5 @@
 
 
 @section('body')
-    @extends('header')
+    @include('header')
 @endsection

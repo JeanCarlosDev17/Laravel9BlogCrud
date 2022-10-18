@@ -14,7 +14,10 @@
     @error('body')
         <small style="color:darkred">{{$message}}</small>
     @enderror
+    <div class="flex justify-between">
 
-    <input type="submit" value="{{$textButton}}" class="block focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mt-8">
+        <a class="inline-flex items-center   text-xs font-semibold underline tracking-widest text-center uppercase transition duration-150 ease-in-out dark:text-slate-400 text-slate-500 hover:text-slate-600 dark:hover:text-slate-500 focus:outline-none focus:border-slate-200" href="{{ route('blog') }}">Regresar</a>
+        <input type="submit" value="{{$textButton}}" class="block justify-end ml-autofocus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mt-8 justify-end">
+    </div>
 
 </div>

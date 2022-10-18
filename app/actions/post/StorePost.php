@@ -9,6 +9,6 @@ class StorePost
 {
     public function execute(array $data)
     {
-        $post=Post::create($data);
+        Post::create($data);
     }
 }
